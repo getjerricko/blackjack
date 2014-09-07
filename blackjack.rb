@@ -15,8 +15,13 @@ def calculate_total(cards)
   cards_value = cards.map {|card| card[0] }
 
   cards_value.each do |value| 
-    if value.to_i == 0 # J, Q, K
-      total += 10
+    # values are originally in string, if you convert letters .to_i
+    # their value is 0 i.e. 'J' => 'J'.to_i => 0
+    # string 'numbers' convert to whatever their 
+    # values are i.e. '1' => '1'.to_i => 1
+
+    if value.to_i == 0        # J, Q, K
+      total += 10            
     elsif value == 'A'
       total += 11
     else
@@ -61,3 +66,7 @@ dealer_total = calculate_total(dealer_card)
 
 puts "Your cards are #{player_card[0]} #{player_card[1]} and the total is: #{player_total}. "
 puts "Dealer's cards are #{dealer_card[0]} #{dealer_card[1]} and the total is: #{dealer_total}. "
+puts ""
+print "What would you like to do? 1) hit 2) stay "
+hit_or_stay = gets.chomp
+
