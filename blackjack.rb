@@ -10,13 +10,25 @@
 
 def calculate_total(cards)
   # cards input [['2', 'D'], ['6', 'C']]  
-  total = []
+  total = 0
   # ['2', '6'] => values 
-  total = cards.map {|card| card[0] }
+  cards_value = cards.map {|card| card[0] }
 
-  #if
-  #end
-  total = total[0].to_i + total[1].to_i
+  cards_value.each do |value| 
+    if value.to_i == 0 # J, Q, K
+      total += 10
+    elsif value == 'A'
+      total += 11
+    else
+      total += value.to_i
+    end
+  end
+
+  # correct for Aces
+  cards_value.select {|value| value == 'A' }.count.times do
+    total -= 10 if total > 21
+  end
+  total 
 end
 
 cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10']
