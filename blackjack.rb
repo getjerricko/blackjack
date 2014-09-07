@@ -8,8 +8,19 @@
 # Deal another card to dealer
 # Calculate player total cards
 
+def calculate_total(cards)
+  # cards input [['2', 'D'], ['6', 'C']]  
+  total = []
+  # ['2', '6'] => values 
+  total = cards.map {|card| card[0] }
 
-cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'K', 'Q', 'A']
+  #if
+  #end
+  total = total[0].to_i + total[1].to_i
+end
+
+cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10']
+#cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'K', 'Q', 'A']
 suits = ['C', 'S', 'H', 'D']
 
 puts "*** Welcome to Blackjack *** "
@@ -21,6 +32,7 @@ puts "Hi, #{player_name}! Let's play! "
 puts ""
 
 # build the deck of cards
+# [['2', 'C'], ['2', 'S'], ['2', 'H'].. ]
 deck = cards.product(suits) 
 deck.shuffle!
 
@@ -32,5 +44,8 @@ dealer_card << deck.pop
 player_card << deck.pop
 dealer_card << deck.pop
 
-puts "Your cards are #{player_card[0]} #{player_card[1]} and the total is: "
-puts "Dealer's cards are #{dealer_card[0]} #{dealer_card[1]} and the total is: "
+player_total = calculate_total(player_card)
+dealer_total = calculate_total(dealer_card)
+
+puts "Your cards are #{player_card[0]} #{player_card[1]} and the total is: #{player_total}. "
+puts "Dealer's cards are #{dealer_card[0]} #{dealer_card[1]} and the total is: #{dealer_total}. "
